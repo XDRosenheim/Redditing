@@ -1,5 +1,4 @@
 package dk.rosenheim.xdrosenheim.redditing;
-
 import java.util.Objects;
 
 /**
@@ -10,30 +9,67 @@ public class Post {
             permalink, url, domain,
             link_flair_text;
     Boolean sticky, nsfw;
-    int points, numComments;
+    int points, numComments, id;
 
-    String getNumberOfComments() {
+    /**
+     * @return Amount of comments + "comment(s)"
+     */
+    public String getNumberOfComments() {
         return numComments == 1 ? numComments + " comment" : numComments + " comments";
     }
-    String getTitle() {
+
+    /**
+     * @return Some people master title creations, some doesn't.
+     */
+    public String getTitle() {
         return title;
     }
-    String getScore() {
+
+    /**
+     * @return Return karma. Hope you have been nice.
+     */
+    public String getScore() {
         return Integer.toString(points);
     }
-    Boolean getSticky() {
+
+    /**
+     * A sticky situation.
+     *
+     * @return Sticky/pinned status for the post.
+     */
+    public Boolean getSticky() {
         return sticky; // (°͜ʖ°)
     }
-    String getFlareText() {
-        return Objects.equals(link_flair_text, "null") || Objects.equals(link_flair_text, "") ? null : "[ " + link_flair_text + " ]";
+
+    /**
+     * @return Flair text, if any.
+     */
+    public String getFlareText() {
+        return Objects.equals(link_flair_text, "null") || Objects.equals(link_flair_text, "") ? null
+                : "[ " + link_flair_text + " ]";
     }
-    String getLink() {
+
+    /**
+     * @return The url for the post.
+     */
+    public String getLink() {
         return url;
     }
-    String getOP() {
+
+    public String getPermaLink() {
+        return permalink;
+    }
+    /**
+     * @return Who posted.
+     */
+    public String getOP() {
         return author;
     }
-    boolean getNsfw() {
+
+    /**
+     * @return NSFW status for the post.
+     */
+    public boolean getNsfw() {
         return nsfw;
     }
 }

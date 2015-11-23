@@ -1,5 +1,4 @@
 package dk.rosenheim.xdrosenheim.redditing;
-
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -14,7 +13,7 @@ import java.util.List;
 public class PostsHolder {
     String subreddit, url, after;
 
-    PostsHolder(String sr) {
+    PostsHolder( String sr ) {
         subreddit = sr;
         after = "";
         generateURL();
@@ -28,16 +27,16 @@ public class PostsHolder {
         url = url.replace("AFTER", after);
     }
 
-    List<Post> fetchPosts() {
-        String raw = RemoteData.readContents(url);
-        List<Post> list = new ArrayList<>();
+    List< Post > fetchPosts() {
+        String       raw  = RemoteData.readContents(url);
+        List< Post > list = new ArrayList<>();
         try {
             JSONObject data = new JSONObject(raw).getJSONObject("data");
             JSONArray children = data.getJSONArray("children");
 
             after = data.getString("after");
 
-            for (int i = 0; i < children.length(); i++) {
+            for( int i = 0; i < children.length(); i++ ) {
                 JSONObject cur = children.getJSONObject(i).getJSONObject("data");
                 Post p = new Post();
                 p.title = cur.optString("title");
@@ -51,15 +50,17 @@ public class PostsHolder {
                 p.sticky = cur.optBoolean("stickied");
                 p.link_flair_text = cur.optString("link_flair_text");
                 p.nsfw = cur.optBoolean("over_18");
-                if (p.title != null) list.add(p);
+                if( p.title != null ) {
+                    list.add(p);
+                }
             }
-        } catch (Exception e) {
+        } catch( Exception e ) {
             Log.e("fetchPost()", e.toString());
         }
         return list;
     }
 
-    List<Post> fetchMorePosts() {
+    List< Post > fetchMorePosts() {
         generateURL();
         return fetchPosts();
     }

@@ -1,12 +1,10 @@
 package dk.rosenheim.xdrosenheim.redditing;
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 public class MainActivity extends FragmentActivity {
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addFragment();
@@ -14,6 +12,6 @@ public class MainActivity extends FragmentActivity {
 
     void addFragment() {
         getSupportFragmentManager().beginTransaction().add(
-                R.id.fragments_holder, PostsFragment.newInstance("XDRosenheim")).commit();
+                R.id.fragments_holder, PostsFragment.newInstance("gifs")).commit();
     }
 }
