@@ -47,7 +47,7 @@ public class PostsFragment extends Fragment {
         postsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick( AdapterView< ? > parent, View view, int position, long id ) {
-                //TODO Open link on tap
+                // Open link on tap
                 Uri    uriUrl        = Uri.parse(posts.get(position).getLink());
                 Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
                 startActivity(launchBrowser);
